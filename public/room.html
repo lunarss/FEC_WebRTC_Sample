@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>WebRTC PeerConnection</title>
+		<link rel="stylesheet" href="./css/main.css">
+		<link rel="shortcut icon" href="#">
+
+		<!-- <meta charset="utf-8">
+		<meta name="description" content="WebRTC code samples">
+		<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1, maximum-scale=1">
+		<meta itemprop="description" content="Client-side WebRTC code samples">
+		<meta itemprop="image" content="../../../images/webrtc-icon-192x192.png">
+		<meta itemprop="name" content="WebRTC code samples">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta id="theme-color" name="theme-color" content="#ffffff"> -->
+	
+		<!-- <base target="_blank">
+	
+		<title>Transfer a file</title>
+	
+		<link rel="icon" sizes="192x192" href="../../../images/webrtc-icon-192x192.png">
+		<link href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="../../../css/main.css">
+		<link rel="stylesheet" href="css/main.css" /> -->
+	</head>
+
+	<body>
+		<section>
+			<div>
+				<div>
+					<button id="connserver">Connect Server</button>
+					<button id="record" disabled>Start Record</button>
+					<button id="leave" disabled>Leave</button>
+				</div>	
+				<!-- <div>
+					<input id="shareDesk" type="checkbox"/>
+					<label for="shareDesk"></label>
+				</div> -->
+
+				<div>
+					<label>BandWidth:</label>
+					<select id="bandwidth" disabled>
+						<!-- <option value="unlimited" selected>unlimited</option> -->
+						<option value="1000" selected>1000</option>
+						<option value="250">250</option>
+						<option value="100">100</option>
+						<option value="90">90</option>
+						<option value="60">60</option>
+						<option value="45">45</option>
+						<option value="30">30</option>
+						<option value="15">15</option>
+					</select>
+					<label>kbps</label>
+				</div>
+
+				<div>
+					<label>Codec:</label>
+					<select id="mimeType">
+						<!-- <option value="unlimited" selected>unlimited</option> -->
+						<option value="1" selected>Opus</option>
+						<!-- <option value="2">RED</option> -->
+					</select>
+				</div>	
+			</div>
+		</section>
+
+		<section> 
+			<!-- <div id="container">
+				<div> 
+					<form id="fileInfo">
+						<input type="file" id="fileInput" name="files"/>
+					</form>
+					<button disabled id="sendFile">Send</button>
+					<button disabled id="abortButton">Abort</button>
+				</div>
+			
+				<div class="progress">
+					<div class="label">Send progress: </div>
+					<progress id="sendProgress" max="0" value="0"></progress>
+				</div>
+			
+				<div class="progress">
+					<div class="label">Receive progress: </div>
+					<progress id="receiveProgress" max="0" value="0"></progress>
+				</div>
+			
+				<div id="bitrate"></div>
+				<a id="download"></a>
+				<span id="status"></span>
+			</div> -->
+
+
+
+			<div id="preview">
+				<div>
+					<h2>Local:</h2>
+					<!-- <video id="localvideo" autoplay playsinline muted></video> -->
+					<audio id="localAudio" autoplay controls muted></audio>
+					<!-- <audio id="localAudio" autoplay controls></audio> -->
+					<!-- <audio id="localAudio" controls muted></audio> -->
+					<audio id="recordLocalAudio" autoplay controls></audio>
+					<!-- <button id="recordRemoteBtn">Start Recording Remote Audio</button> -->
+					<button id="playLocalBtn" disabled="">Play Local</button>
+					<button id="downloadLocalBtn" disabled="">download</button>
+					<h2>Offer SDP:</h2>
+					<textarea id="offer"></textarea>
+				</div>
+				<div>
+					<h2>Romote:</h2>
+					<!-- <video id="remotevideo" autoplay playsinline></video> -->
+					<audio id="remoteAudio" autoplay controls></audio>
+					<!-- <audio id="remoteAudio" controls muted></audio> -->
+					<audio id="recordRemoteAudio" autoplay controls></audio>
+					<!-- <button id="recordRemoteBtn">Start Recording Remote Audio</button> -->
+					<button id="playRemoteBtn" disabled="">Play Remote</button>
+					<button id="downloadRemoteBtn" disabled="">download</button>
+					<h2>Answer SDP:</h2>
+					<textarea id="answer"></textarea>
+				</div>
+			</div>
+
+			<div class="graph-container" id="bitrateGraph">
+				<div>BitRate</div>
+				<canvas id="bitrateCanvas"></canvas>
+			</div>	
+			<div class="graph-container" id="packetGraph">
+				<div>Packets sent per second</div>
+				<canvas id="packetCanvas"></canvas>
+			</div>
+			<div class="graph-container" id="fecGraph">
+				<div>FEC Packets received per second</div>
+				<canvas id="fecCanvas"></canvas>
+			</div>
+			<div class="graph-container" id="lossGraph">
+				<div>Loss Rate every 10 seconds</div>
+				<canvas id="lossCanvas"></canvas>
+			</div>
+		</section>
+
+		<script src="third_party/graph.js"></script>
+		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script> -->
+		<script src="/socket.io/socket.io.js"></script>
+		<!-- <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script> -->
+		<script src="./main.js"></script>	
+		<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+		<script src="./lib/ga.js"></script>
+	</body>
+</html>
+
+
+

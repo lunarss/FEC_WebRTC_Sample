@@ -1,0 +1,12 @@
+.vercel
+public/emodel.js
+cert/*.pem
+cert/*.key
+
+node_modules/
+package-lock.json
+package.json
+app.log
+
+# misc
+.DS_Store
